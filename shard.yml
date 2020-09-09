@@ -1,0 +1,18 @@
+name: sfml_book
+version: 0.1.0
+
+authors:
+  - reiswindy <megamanbn@gmail.com>
+
+dependencies:
+  crsfml:
+    github: oprypin/crsfml
+    version: ~> 2.5.2
+
+targets:
+  chapter1:
+    main: src/chapter1/app.cr
+
+crystal: 0.35.1
+
+license: MIT
