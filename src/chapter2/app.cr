@@ -13,12 +13,12 @@ module SfmlBook::Chapter2
     getter map = {} of K => V
 
     def load(id : K, filename : String)
-      raise "Texture already loaded for #{id}" if map[id]?
+      raise "Resource already loaded for #{id}" if map[id]?
       map[id] = V.from_file(filename)
     end
 
     def fetch(id : K)
-      raise "Texture not found for #{id}" if !map[id]?
+      raise "Resource not found for #{id}" if !map[id]?
       map[id]
     end
   end
