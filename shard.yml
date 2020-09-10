@@ -12,6 +12,8 @@ dependencies:
 targets:
   chapter1:
     main: src/chapter1/app.cr
+  chapter2:
+    main: src/chapter2/app.cr
 
 crystal: 0.35.1
 
