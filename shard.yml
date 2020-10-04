@@ -18,6 +18,8 @@ targets:
     main: src/chapter3/app.cr
   chapter4:
     main: src/chapter4/app.cr
+  chapter5:
+    main: src/chapter5/app.cr
 
 crystal: 0.35.1
 
