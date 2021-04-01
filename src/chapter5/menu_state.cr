@@ -19,7 +19,7 @@ module SfmlBook::Chapter5
 
       option_exit = SF::Text.new("Exit", font)
       option_exit.origin = center_element_origin(option_exit)
-      option_exit.position = @context.window.view.size / 2
+      option_exit.position = option_play.position + SF.vector2f(0, 30)
 
       @options = [] of SF::Text
       @options << option_play
