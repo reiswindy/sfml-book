@@ -6,20 +6,22 @@ module SfmlBook::Chapter5
     include SF::NonCopyable
     include SF::Drawable
 
-    property parent : SceneNode?
+    property parent : Pointer(SceneNode)
 
     def initialize
       super()
+      @parent = Pointer(SceneNode).null
       @children = [] of SceneNode
     end
 
     def attach(node : SceneNode)
-      node.parent = self
+      aux = self.as(SceneNode)
+      node.parent = pointerof(aux)
       @children.push(node)
     end
 
     def detach(node : SceneNode)
-      node.parent = nil
+      node.parent = Pointer(SceneNode).null
       @children.delete(node)
     end
 
@@ -52,7 +54,7 @@ module SfmlBook::Chapter5
       world = transform
       node = @parent
       while node
-        world = node.transform * world
+        world = node.value.transform * world
         node = node.parent
       end
       world
