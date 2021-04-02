@@ -6,7 +6,7 @@ module SfmlBook::Chapter5
       view_size = @context.window.view.size
 
       @text = SF::Text.new("Loading resources", font)
-      @text.origin = center_element_origin(element)
+      @text.origin = Utils.center_element_origin(element)
       @text.position = {view_size.x / 2, view_size.y / 2 + 50}
 
       @progress_background = SF::RectangleShape.new
@@ -41,13 +41,6 @@ module SfmlBook::Chapter5
       @context.window.draw(@text)
       @context.window.draw(@progress_background)
       @context.window.draw(@progress)
-    end
-
-    private def center_element_origin(element)
-      bounds = element.local_bounds
-      x = bounds.left + bounds.width / 2
-      y = bounds.top + bounds.height / 2
-      {x.floor.to_i, y.floor.to_i}
     end
 
     private def update_completion(percent)

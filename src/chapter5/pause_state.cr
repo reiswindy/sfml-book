@@ -14,11 +14,11 @@ module SfmlBook::Chapter5
 
       @paused_text = SF::Text.new("Game Paused", font)
       @paused_text.character_size = 70
-      @paused_text.origin = center_element_origin(@paused_text)
+      @paused_text.origin = Utils.center_element_origin(@paused_text)
       @paused_text.position = {0.5 * view_size.x, 0.4 * view_size.y}
 
       @instructions_text = SF::Text.new("Press Backspace to return to the main menu", font)
-      @instructions_text.origin = center_element_origin(@instructions_text)
+      @instructions_text.origin = Utils.center_element_origin(@instructions_text)
       @instructions_text.position = {0.5 * view_size.x, 0.6 * view_size.y}
     end
 
@@ -46,13 +46,6 @@ module SfmlBook::Chapter5
       window.draw(@background)
       window.draw(@paused_text)
       window.draw(@instructions_text)
-    end
-
-    private def center_element_origin(element)
-      bounds = element.local_bounds
-      x = bounds.left + bounds.width / 2
-      y = bounds.top + bounds.height / 2
-      {x.floor.to_i, y.floor.to_i}
     end
   end
 end

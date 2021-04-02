@@ -8,6 +8,7 @@ require "./title_state"
 require "./menu_state"
 require "./game_state"
 require "./pause_state"
+require "./utils"
 
 module SfmlBook::Chapter5
   class Application

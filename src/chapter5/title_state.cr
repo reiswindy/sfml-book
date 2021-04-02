@@ -10,7 +10,7 @@ module SfmlBook::Chapter5
       @background = SF::Sprite.new(texture)
 
       @text = SF::Text.new("Press any key to start", font)
-      @text.origin = center_element_origin(@text)
+      @text.origin = Utils.center_element_origin(@text)
       @text.position = @context.window.view.size / 2
 
       @show_text = true
@@ -39,13 +39,6 @@ module SfmlBook::Chapter5
       window = @context.window
       window.draw(@background)
       window.draw(@text) if @show_text
-    end
-
-    private def center_element_origin(element)
-      bounds = element.local_bounds
-      x = bounds.left + bounds.width / 2
-      y = bounds.top + bounds.height / 2
-      {x.floor.to_i, y.floor.to_i}
     end
   end
 end

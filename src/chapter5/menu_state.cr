@@ -14,11 +14,11 @@ module SfmlBook::Chapter5
       @background = SF::Sprite.new(texture)
 
       option_play = SF::Text.new("Play", font)
-      option_play.origin = center_element_origin(option_play)
+      option_play.origin = Utils.center_element_origin(option_play)
       option_play.position = @context.window.view.size / 2
 
       option_exit = SF::Text.new("Exit", font)
-      option_exit.origin = center_element_origin(option_exit)
+      option_exit.origin = Utils.center_element_origin(option_exit)
       option_exit.position = option_play.position + SF.vector2f(0, 30)
 
       @options = [] of SF::Text
@@ -70,13 +70,6 @@ module SfmlBook::Chapter5
       @options.each do |text|
         window.draw(text)
       end
-    end
-
-    private def center_element_origin(element)
-      bounds = element.local_bounds
-      x = bounds.left + bounds.width / 2
-      y = bounds.top + bounds.height / 2
-      {x.floor.to_i, y.floor.to_i}
     end
   end
 end
