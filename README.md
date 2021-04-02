@@ -1,22 +1,32 @@
 # sfml_book
 
-TODO: Write a description here
+Attempts at implementing the code from the book "SFML Game Development" using crsfml
 
 ## Installation
 
-TODO: Write installation instructions here
+Install dependencies:
+
+```bash
+$ shards install
+```
+
+Each chapter's code can be built individually by using the chapter's number:
+
+```bash
+$ shards build chapter5
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Compiled examples are inside the `bin` directory, and can be run from the main folder:
 
-## Development
-
-TODO: Write development instructions here
+```bash
+$ bin/chapter5
+```
 
 ## Contributing
 
-1. Fork it (<https://github.com/your-github-user/sfml_book/fork>)
+1. Fork it (<https://github.com/reiswindy/sfml_book/fork>)
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
@@ -24,4 +34,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [your-name-here](https://github.com/your-github-user) - creator and maintainer
+- [reiswindy](https://github.com/reiswindy) - creator and maintainer
