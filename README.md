@@ -24,6 +24,10 @@ Compiled examples are inside the `bin` directory, and can be run from the main f
 $ bin/chapter5
 ```
 
+## To Do
+* Finish the rest of the chapters
+* Fix GC warnings in chapters 6+ (`GC Warning: Finalization cycle`)
+
 ## Contributing
 
 1. Fork it (<https://github.com/reiswindy/sfml_book/fork>)
