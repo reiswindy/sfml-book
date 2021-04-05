@@ -49,21 +49,20 @@ module SfmlBook::Chapter6
     end
 
     def update_labels
-      Player::Action.each do |action|
-        key = @context.player.assigned_key(action)
-        @binding_labels[action].text = key.to_s
+      @binding_labels.each do |action, label|
+        label.text = @context.player.assigned_key(action).to_s
       end
     end
 
     def handle_event(event : SF::Event)
       key_binding = false
 
-      Player::Action.each do |action|
-        if @binding_buttons[action].active?
+      @binding_buttons.each do |action, button|
+        if button.active?
           key_binding = true
           if event.is_a?(SF::Event::KeyReleased)
             @context.player.assign_key(action, event.code)
-            @binding_buttons[action].deactivate
+            button.deactivate
           end
           break
         end

@@ -3,7 +3,8 @@ require "./component"
 module SfmlBook::Chapter6
   module GUI
     class Button < Component
-      property? toggle = false
+      property? toggle : Bool = false
+      property? callback : Proc(Nil)?
 
       def initialize(fonts : FontHolder, textures : TextureHolder)
         super()
@@ -11,14 +12,9 @@ module SfmlBook::Chapter6
         @pressed_texture = textures.fetch(Textures::ButtonPressed).as(SF::Texture)
         @selected_texture = textures.fetch(Textures::ButtonSelected).as(SF::Texture)
 
-        @callback = ->(){nil}
         @sprite = SF::Sprite.new(@normal_texture)
         @text = SF::Text.new("", fonts.fetch(Fonts::Main), 16)
         @text.position = {@sprite.local_bounds.width / 2.0, @sprite.local_bounds.height / 2.0}
-      end
-
-      def callback=(proc : Proc(Nil))
-        @callback = proc
       end
 
       def text=(text : String)
@@ -39,7 +35,7 @@ module SfmlBook::Chapter6
       def activate
         super
         @sprite.texture = @pressed_texture if toggle?
-        @callback.call
+        callback?.try(&.call)
         deactivate if !toggle?
       end
 
