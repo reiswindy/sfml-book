@@ -24,16 +24,26 @@ module SfmlBook::Chapter6
       button_return = GUI::Button.new(@context.fonts, @context.textures)
       button_return.position = {0.5 * window_size.x - 100, 0.4 * window_size.y + 75}
       button_return.text = "Return"
-      button_return.callback = ->(){
-        request_stack_pop
-      }
 
       button_menu = GUI::Button.new(@context.fonts, @context.textures)
       button_menu.position = {0.5 * window_size.x - 100, 0.4 * window_size.y + 125}
       button_menu.text = "Back to Menu"
+
+      button_return.callback = ->(){
+        request_stack_pop
+        # Remove callbacks to prevent GC finalization cycles
+        button_return.callback = nil
+        button_menu.callback = nil
+        nil
+      }
+
       button_menu.callback = ->(){
         request_stack_clear
         request_stack_push(States::Menu)
+        # Remove callbacks to prevent GC finalization cycles
+        button_return.callback = nil
+        button_menu.callback = nil
+        nil
       }
 
       @container.pack(button_return)

@@ -17,25 +17,36 @@ module SfmlBook::Chapter6
       button_play = GUI::Button.new(@context.fonts, @context.textures)
       button_play.position = {100, 250}
       button_play.text = "Play"
-      button_play.callback = ->(){
-        request_stack_pop
-        request_stack_push(States::Game)
-        nil
-      }
 
       button_settings = GUI::Button.new(@context.fonts, @context.textures)
       button_settings.position = {100, 300}
       button_settings.text = "Settings"
+
+      button_exit = GUI::Button.new(@context.fonts, @context.textures)
+      button_exit.position = {100, 350}
+      button_exit.text = "Exit"
+
+      button_play.callback = ->(){
+        request_stack_pop
+        request_stack_push(States::Game)
+        # Remove callbacks to prevent GC finalization cycles
+        button_play.callback = nil
+        button_exit.callback = nil
+        button_settings.callback = nil
+        nil
+      }
+
       button_settings.callback = ->(){
         request_stack_push(States::Settings)
         nil
       }
 
-      button_exit = GUI::Button.new(@context.fonts, @context.textures)
-      button_exit.position = {100, 350}
-      button_exit.text = "Exit"
       button_exit.callback = ->(){
         request_stack_pop
+        # Remove callbacks to prevent GC finalization cycles
+        button_play.callback = nil
+        button_exit.callback = nil
+        button_settings.callback = nil
         nil
       }
 
