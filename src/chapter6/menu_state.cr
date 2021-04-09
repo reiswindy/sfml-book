@@ -29,10 +29,6 @@ module SfmlBook::Chapter6
       button_play.callback = ->(){
         request_stack_pop
         request_stack_push(States::Game)
-        # Remove callbacks to prevent GC finalization cycles
-        button_play.callback = nil
-        button_exit.callback = nil
-        button_settings.callback = nil
         nil
       }
 
@@ -43,10 +39,6 @@ module SfmlBook::Chapter6
 
       button_exit.callback = ->(){
         request_stack_pop
-        # Remove callbacks to prevent GC finalization cycles
-        button_play.callback = nil
-        button_exit.callback = nil
-        button_settings.callback = nil
         nil
       }
 
@@ -69,6 +61,10 @@ module SfmlBook::Chapter6
       window.view = window.default_view
       window.draw(@background)
       window.draw(@container)
+    end
+
+    def destroy
+      @container.destroy
     end
   end
 end

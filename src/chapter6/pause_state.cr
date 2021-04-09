@@ -31,18 +31,12 @@ module SfmlBook::Chapter6
 
       button_return.callback = ->(){
         request_stack_pop
-        # Remove callbacks to prevent GC finalization cycles
-        button_return.callback = nil
-        button_menu.callback = nil
         nil
       }
 
       button_menu.callback = ->(){
         request_stack_clear
         request_stack_push(States::Menu)
-        # Remove callbacks to prevent GC finalization cycles
-        button_return.callback = nil
-        button_menu.callback = nil
         nil
       }
 
@@ -66,6 +60,10 @@ module SfmlBook::Chapter6
       window.draw(@background)
       window.draw(@paused_text)
       window.draw(@container)
+    end
+
+    def destroy
+      @container.destroy
     end
   end
 end

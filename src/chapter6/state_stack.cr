@@ -54,8 +54,8 @@ module SfmlBook::Chapter6
       @pending.each do |change|
         case change.action
         when Action::Push  then @stack << create(change.id.not_nil!)
-        when Action::Pop   then @stack.pop
-        when Action::Clear then @stack.clear
+        when Action::Pop   then @stack.pop.destroy
+        when Action::Clear then @stack.size.times{ @stack.pop.destroy }
         else raise "Invalid #{Action}"
         end
       end
@@ -99,6 +99,9 @@ module SfmlBook::Chapter6
     abstract def handle_event(event : SF::Event)
     abstract def update(delta : SF::Time)
     abstract def draw
+
+    def destroy
+    end
 
     def request_stack_push(state : States)
       @stack.push(state)

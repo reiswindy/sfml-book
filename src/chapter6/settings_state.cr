@@ -23,9 +23,6 @@ module SfmlBook::Chapter6
       button_back.text = "Back"
       button_back.callback = ->(){
         request_stack_pop
-        # Remove callbacks to prevent GC finalization cycles
-        button_back.callback = nil
-        @binding_buttons.each_value(&.callback=nil)
         nil
       }
 
@@ -84,6 +81,10 @@ module SfmlBook::Chapter6
       window = @context.window
       window.draw(@background)
       window.draw(@container)
+    end
+
+    def destroy
+      @container.destroy
     end
   end
 end

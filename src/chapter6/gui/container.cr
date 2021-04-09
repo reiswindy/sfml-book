@@ -76,6 +76,12 @@ module SfmlBook::Chapter6
           target.draw(c, states)
         end
       end
+
+      def destroy
+        @children.each do |c|
+          c.callback = nil if c.is_a?(GUI::Button)
+        end
+      end
     end
   end
 end
